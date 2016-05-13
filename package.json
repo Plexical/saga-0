@@ -1,0 +1,19 @@
+{
+  "name": "saga-0",
+  "version": "0.1.0",
+  "description": "redux-saga test drive",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'No test specified' && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Plexical/saga-0.git"
+  },
+  "author": "Jacob Oscarson <jacob@plexical.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Plexical/saga-0/issues"
+  },
+  "homepage": "https://github.com/Plexical/saga-0#readme"
+}
