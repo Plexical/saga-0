@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Plexical/saga-0/issues"
   },
-  "homepage": "https://github.com/Plexical/saga-0#readme"
+  "homepage": "https://github.com/Plexical/saga-0#readme",
+  "dependencies": {
+    "redux": "^3.5.2",
+    "redux-saga": "^0.10.4"
+  }
 }
