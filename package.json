@@ -19,5 +19,9 @@
   "dependencies": {
     "redux": "^3.5.2",
     "redux-saga": "^0.10.4"
+  },
+  "devDependencies": {
+    "marked": "^0.3.5",
+    "trepanjs": "^0.2.5"
   }
 }
