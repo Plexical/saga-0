@@ -12,12 +12,10 @@ const FakeApi = {
     if(! FakeApi.objects[ident]) {
       throw new Error(`No fixture for ${ident}!`)
     }
-    console.log('FETCH..', FakeApi.objects[ident]);
     return new Promise((fulfill, fail) => {
       setTimeout (() => {
         try {
           const who = FakeApi.objects[ident]
-          console.log('WHO', who);
           if(who.ok) {
             fulfill(who);
           } else {

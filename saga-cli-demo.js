@@ -34,19 +34,20 @@ const store = createStore(combineReducers ({
   },
 }), applyMiddleware(sagaMiddleware));
 
+let n = 0;
 store.subscribe (() => {
   const state = store.getState()
-  console.log('RENDER', JSON.stringify(state, null, 2));
+  console.log(`----------------------- RENDER ${n} -----------------------\n`,
+              JSON.stringify(state.api, null, 2));
+  n++;
 })
 
 function *handleFetching(action) {
   try {
     store.dispatch({type: 'started', pending: action.ident})
     const who = yield effect.call(FakeApi.fetch, action.ident)
-    console.log(`fetched ${who.name}`, who);
     store.dispatch({type: 'received', data: who})
     if (who.friends.length > 0) {
-      console.log('RECUR..', who.friends);
       for(const friend of who.friends) {
         // NB: Recursive action FTW!
         store.dispatch({type: 'fetch!', ident: friend})
