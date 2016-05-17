@@ -6,7 +6,7 @@ import * as effect from 'redux-saga/effects';
 
 import {FakeApi} from './fixture';
 
-const INITIAL_API_STATE={pending: 0, failed: 0, fetched: {}};
+const INITIAL_API_STATE={pending: 0, failed: 0, fetched: {}, failures: {}};
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,15 +17,18 @@ const store = createStore(combineReducers ({
         return Object.assign({}, state, {pending: state.pending + 1});
       case 'received':
         const data = action.data;
-        console.log('RECEIVED', data);
         const fetched = Object.assign({},
                                       state.fetched,
                                       {[data.id]: data});
         return Object.assign({}, state, {pending: state.pending - 1,
                                          fetched: fetched});
       case 'failed':
+        const failures = Object.assign({},
+                                       state.failures,
+                                       action.failure)
         return Object.assign({}, state, {pending: state.pending - 1,
-                                         failed: state.failed + 1});
+                                         failed: state.failed + 1,
+                                         failures: failures});
     }
     return state;
   },
@@ -49,9 +52,8 @@ function *handleFetching(action) {
         store.dispatch({type: 'fetch!', ident: friend})
       }
     }
-  } catch (e) {
-    console.log(`FAILED ${e}`);
-    store.dispatch({type: 'failed', failures: {[action.ident]: e}})
+  } catch (err) {
+    store.dispatch({type: 'failed', failure: {[action.ident]: err.message}})
   }
 }
 
