@@ -4,7 +4,8 @@
   "description": "redux-saga test drive",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'No test specified' && exit 1"
+    "test": "echo 'No test specified' && exit 1",
+    "demo": "babel-node saga-cli-demo.js"
   },
   "repository": {
     "type": "git",
